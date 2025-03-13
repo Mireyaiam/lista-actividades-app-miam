@@ -5,7 +5,7 @@ import { e2e } from './constantes'
 declare global {
     namespace Cypress {
         interface Chainable {
-            validacionInicial(): Chainable<element>
+            validacionInicial(): Chainable<Element>
         }
     }
 }
