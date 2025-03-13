@@ -1,4 +1,15 @@
 /// <reference types="cypress" />
+
+import { e2e } from './constantes'
+
+declare global {
+    namespace Cypress {
+        interface Chainable {
+            validacionInicial(): Chainable<element>
+        }
+    }
+}
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -35,3 +46,15 @@
 //     }
 //   }
 // }
+
+
+Cypress.Commands.add('validacionInicial', () => {
+     cy.get(e2e.TITULO_PRINCIPAL).should('be.visible').and('contain', 'Lista de Actividades');
+        cy.get(e2e.SUBTITULO).should('be.visible').and('contain', 'Agregar Actividad');
+        cy.get(e2e.AGREGAR_CAMPO_ACTIVIDAD)
+        .should('be.visible')
+        .and('have.attr', 'value','');
+        cy.get(e2e.BOTON_AGREGAR)
+        .should('be.visible')
+        .and('has.css','background-color', 'rgb(40, 167, 69)');
+ })
